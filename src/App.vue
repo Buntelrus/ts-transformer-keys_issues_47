@@ -1,27 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <p>{{ message }}</p>
+  <p>{{ messageAlias }}</p>
+  <p>{{ upperCaseMessage }}</p>
+  <p>{{ messageToUpperCase() }}</p>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from './components/HelloWorld.vue';
+import { Vue } from 'vue-class-component'
+import { keys } from "ts-transformer-keys"
+class Test {
+  prop1 = 'p1'
+  prop2 = 'p2'
 
-@Options({
-  components: {
-    HelloWorld,
-  },
-})
-export default class App extends Vue {}
-</script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  someMethod() {
+    console.log('nice')
+  }
 }
-</style>
+
+export default class App extends Vue {
+  message = 'hello World'
+
+  get messageAlias() {
+    return this.message
+  }
+
+  get upperCaseMessage() {
+    return this.message.toUpperCase() // this will work
+    // return this.messageToUpperCase() // this won't
+  }
+
+  messageToUpperCase() {
+    return this.message.toUpperCase()
+  }
+
+  created() {
+    const testKeys = keys<Test>()
+    console.log(testKeys)
+  }
+}
+</script>

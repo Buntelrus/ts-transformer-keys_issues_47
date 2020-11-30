@@ -25,6 +25,9 @@
       "dom",
       "dom.iterable",
       "scripthost"
+    ],
+    "plugins": [
+      { "transform": "ts-transformer-keys/transformer" }
     ]
   },
   "include": [
