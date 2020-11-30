@@ -25,8 +25,8 @@ export default class App extends Vue {
   }
 
   get upperCaseMessage() {
-    return this.message.toUpperCase() // this will work
-    // return this.messageToUpperCase() // this won't
+    // return this.message.toUpperCase() // this will work
+    return this.messageToUpperCase() // this won't
   }
 
   messageToUpperCase() {
